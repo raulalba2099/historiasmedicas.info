@@ -15,7 +15,11 @@ class CitasCrearController extends Controller
 
          $siguienteNumero = 0;
          $citas =  CitaCrear::join('pacientes','cit_pac_id', 'pac_Id')->where('pac_use_id', auth()->user()->id)->orderBy('cit_id', 'desc')->get();
-         $pacientesCita = Paciente::where('pac_use_id', auth()->user()->id)->orderBy('pac_id', 'desc')->get();
+         $pacientesCita = Paciente::select('pac_id','pac_numero','pac_paterno','pac_materno','pac_nombre')
+          ->where('pac_use_id', auth()->user()->id)
+             ->orderBy('pac_id', 'desc')
+             ->take(100)
+             ->get();
          $pacientesArray = $pacientesCita->toArray();
          $pacientesArrayNumeros = array_unique(array_column($pacientesArray, 'pac_numero'));
 
