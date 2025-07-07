@@ -54,7 +54,7 @@
 	======================================-->
 
 	{{-- Fontawesome --}}
-	<script src="https://kit.fontawesome.com/e632f1f723.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f496ca1534.js" crossorigin="anonymous"></script>
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
