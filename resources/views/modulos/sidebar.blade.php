@@ -8,7 +8,7 @@
     <a href="{{ url('/citas') }}" class="brand-link">
 {{--      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">--}}
       <p class="user brand-text  text-center text-white bree-berif font-italic">
-         {{auth()->user()->name}}
+         Dr {{auth()->user()->name}}
       </p>
     </a>
 
