@@ -15,21 +15,37 @@ class CitasCrearController extends Controller
 {
     public function indexAction () {
 
-         $siguienteNumero = 0;
-         $citas =  CitaCrear::join('pacientes','cit_pac_id', 'pac_Id')->where('pac_use_id', auth()->user()->id)->orderBy('cit_id', 'desc')->get();
-         $pacientesCita = Paciente::select('pac_id','pac_numero','pac_paterno','pac_materno','pac_nombre')
-          ->where('pac_use_id', auth()->user()->id)
-             ->orderBy('pac_id', 'desc')
-             ->take(100)
-             ->get();
-         $pacientesArray = $pacientesCita->toArray();
-         $pacientesArrayNumeros = array_unique(array_column($pacientesArray, 'pac_numero'));
+//         $siguienteNumero = 0;
+//         $citas =  CitaCrear::join('pacientes','cit_pac_id', 'pac_Id')->where('pac_use_id', auth()->user()->id)->orderBy('cit_id', 'desc')->get();
+//         $pacientesCita = Paciente::select('pac_id','pac_numero','pac_paterno','pac_materno','pac_nombre')
+//          ->where('pac_use_id', auth()->user()->id)
+//             ->orderBy('pac_id', 'desc')
+//             ->take(100)
+//             ->get();
+//         $pacientesArray = $pacientesCita->toArray();
+//         $pacientesArrayNumeros = array_unique(array_column($pacientesArray, 'pac_numero'));
+//
+//         if(count($pacientesCita) > 0 ) {
+//             $siguienteNumero = max($pacientesArrayNumeros) + 1;
+//         }
 
-         if(count($pacientesCita) > 0 ) {
-             $siguienteNumero = max($pacientesArrayNumeros) + 1;
-         }
+        $citas = Cita::with('paciente')
+            ->orderBy('cit_id', 'desc')
+            ->get();
 
-        return view("paginas.citas-crear", array('citas' => $citas, 'pacientes' => $pacientesCita, 'siguienteNumero' => $siguienteNumero ));
+//        $maxPacNumero = $citas
+//            ->pluck('paciente.pac_numero')   // obtener todos los pac_numero relacionados
+//            ->filter()                      // eliminar valores nulos por si algún paciente no existe
+//            ->max();
+
+        $siguienteNumero = Paciente::max('pac_numero') + 1;
+
+
+
+
+        return view("paginas.citas-crear", ["siguienteNumero" => $siguienteNumero],  compact("citas"));
+
+//        return view("paginas.citas-crear", array('citas' => $citas, 'pacientes' => $pacientesCita, 'siguienteNumero' => $siguienteNumero ));
     }
 
     public function saveAction (Request $request) {
