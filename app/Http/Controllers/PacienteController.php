@@ -252,8 +252,11 @@ class PacienteController extends Controller
                 ->where('pac_paterno', 'like', '%'.$nombreCompleto[1].'%')
                 ->where('pac_materno', 'like', '%'.$nombreCompleto[2].'%')
                 ->where('pac_use_id', auth()->user()->id)
-                ->orderBy('pac_id', 'desc')
+                ->orderBy('pac_nombre', 'asc')
+                ->orderBy('pac_paterno', 'asc')
+                ->orderBy('pac_materno', 'asc')
                 ->get();
+
         }
         if (count($pacientes) >0 ) {
             $pacientesArray = array('pacientes' => $pacientes, 'status' => 1 );
@@ -262,6 +265,19 @@ class PacienteController extends Controller
             $pacientesArray = array('pacientes' => $pacientes, 'status' => 400);
         }
         return $pacientesArray;
+    }
+
+    public function buscarPacientesSelect(Request $request)
+    {
+        $termino = $request->input('term'); // 'term' es la palabra clave que envía Select2
+
+        $pacientes = DB::table('pacientes')
+            ->select('pac_id as id', DB::raw("CONCAT(pac_nombre, ' ', pac_paterno, ' ', pac_materno) as text"))
+            ->whereRaw("CONCAT(pac_nombre, ' ', pac_paterno, ' ', pac_materno) LIKE ?", ["%{$termino}%"])
+            ->limit(10)
+            ->get();
+
+        return response()->json($pacientes);
     }
 
 //   static public function age($fecha_nacimiento)

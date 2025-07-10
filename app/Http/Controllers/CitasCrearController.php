@@ -8,6 +8,8 @@ use App\Models\Receta;
 use Illuminate\Http\Request;
 use App\Models\CitaCrear;
 use App\Models\Paciente;
+use Illuminate\Support\Facades\Validator;
+use PHPUnit\Logging\Exception;
 
 class CitasCrearController extends Controller
 {
@@ -51,6 +53,41 @@ class CitasCrearController extends Controller
             return redirect("citas")->with("ok-crear-cita", "");
         }else {
             return redirect("citas-crear")->with("ok-crear-cita", "");
+        }
+    }
+
+    public function create() {
+
+        try {
+
+            $validator = Validator::make(request()->all(), [
+                "id" => "required",
+                "fecha" => "required",
+                "hora" => "required",
+            ]);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            };
+
+            $cita = Cita::create(request()->all());
+
+            $response = response()->json([
+                'status' => 1,
+                'message' => 'Cita creada correctamente',
+                'cita' => $cita,
+            ]);
+
+        }catch (\Exception $e) {
+
+            $response = response()->json([
+                'status' => 2,
+                'message' => $e->getMessage(),
+            ]);
+
+        } finally {
+
+           return $response;
         }
     }
 

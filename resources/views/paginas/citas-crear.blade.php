@@ -32,11 +32,25 @@
                                 {{--                                </button>--}}
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <form action="{{url('/')}}/citas-crear" class="bg-light needs-validation"
+                                        <form action="{{url('/')}}/citas-nueva" class="bg-light needs-validation"
                                               method="post" novalidate>
                                             @csrf
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-12 d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#crearPaciente" >
+                                                        Agregar Paciente
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12">
+                                                    <div class="input-group mb-3">
+                                                        <select class="form-control paciente_id" name="id" id="paciente_id" required ></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
@@ -54,7 +68,7 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-6">
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
@@ -71,32 +85,6 @@
                                                         @enderror
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text">
-                                                                <i class="nav-icon fas fa-user-injured color-claro"></i>
-                                                            </div>
-                                                        </div>
-                                                        <select class="form-control" name="id" id="id" required>
-                                                            <option value="">--Seleccione--</option>
-                                                            @foreach( $pacientes as $paciente)
-                                                                <option value=" {{$paciente['pac_id']}}  ">
-                                                                    {{ $paciente['pac_nombre'] . " " . $paciente['pac_paterno'] . " " . $paciente['pac_materno']  }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        <span class="ml-2">
-                                                         <a style="cursor:pointer" title="Agrega Paciente"
-                                                            class="btn btn-success btn-sm text-white"
-                                                            data-toggle="modal">
-                                                             <i class=" nav-icon fas fa-user-injured"
-                                                                data-toggle="modal" data-target="#crearPaciente">
-                                                             </i>
-                                                        </a>
-                                                    </span>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="row mt-3">
 
@@ -106,7 +94,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <button class="btn btn-primary btn-block btn-flat mt-3 mt-md-0">
+                                                    <button class="save-cita btn btn-primary btn-block btn-flat mt-3 mt-md-0">
                                                         Guardar
                                                     </button>
                                                 </div>
@@ -405,7 +393,7 @@
                                 aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{url('/')}}/citas-crear/{{$cita->cit_id}}" class="bg-light " method="post" novalidate
+                    <form action="{{url('/')}}/citas-editar/{{$cita->cit_id}}" class="bg-light " method="post" novalidate
                           name="editaCitaForm" id="editaCitaForm">
                         @csrf
                         @method('PUT')
