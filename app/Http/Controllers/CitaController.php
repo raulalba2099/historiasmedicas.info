@@ -13,7 +13,10 @@ class CitaController extends Controller
 {
    static  public function indexAction () {
 
-        $citas = Cita::join('pacientes','cit_pac_id', 'pac_id')->where('pac_use_id', (!empty(auth()->user())) ?  auth()->user()->id : '>', 0  )->get();
+        $citas = Cita::join('pacientes','cit_pac_id', 'pac_id')
+            ->where('pac_use_id', (!empty(auth()->user())) ?  auth()->user()->id : '>', 0  )
+            ->orderBy('cit_hora', 'desc')
+            ->get();
         $citasArray = $citas->toArray();
 
        $pacientesCita = Paciente::orderBy('pac_id', 'desc')->get();
