@@ -56,7 +56,7 @@ Route::delete('/pacientes/{id}', [PacienteController::class, 'deleteAction']);
 Route::get('/citas-crear', [CitasCrearController::class, 'indexAction']);
 Route::put('/citas-editar/{id}', [CitasCrearController::class, 'updateAction']);
 Route::post('/citas-nueva', [CitasCrearController::class, 'saveAction']);
-Route::delete('/citas-crear/{id}', [CitasCrearController::class, 'deleteAction']);
+Route::delete('/citas-eliminar/{id}', [CitasCrearController::class, 'deleteAction']);
 Route::get('/citas-crear/{id}', [CitasCrearController::class, 'show']);
 
 Route::get('/consulta/{id}', [ConsultaController::class, 'indexAction']);
