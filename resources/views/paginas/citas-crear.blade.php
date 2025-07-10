@@ -153,7 +153,7 @@
                                                                     <button
                                                                         class="btn btn-danger  eliminarRegistro ml-2"
                                                                         ruta="{{url('/')}}/citas-crear"
-                                                                        action="{{url('/')}}/citas-crear/{{$cita['cit_id']}} "
+                                                                        action="{{url('/')}}/citas-eliminar/{{$cita['cit_id']}} "
                                                                         method="DELETE" pagina="administradores">
                                                                         @csrf
                                                                         <i class="fas fa-trash-alt"></i>
