@@ -124,10 +124,10 @@
 
                                                 @foreach($citas as $cita)
                                                     <tr>
-                                                        <td class="text-center"> {{$cita['cit_id']}} </td>
-                                                        <td class="text-center"> {{ $cita['pac_numero']  }} </td>
+                                                        <td class="text-center"> {{$cita->cit_id}} </td>
+                                                        <td class="text-center">  {{ $cita->paciente->pac_numero }} </td>
                                                         <td>
-                                                            {{$cita['pac_nombre'] . " " . $cita['pac_paterno'] . " " . $cita['pac_materno']  }}
+                                                            {{ $cita->paciente->pac_nombre }} {{ $cita->paciente->pac_paterno }} {{$cita->paciente->pac_materno}}
                                                         </td>
                                                         <td class="text-center">
                                                             {{ date('d-m-Y', strtotime($cita['cit_fecha']))   }}
@@ -433,16 +433,16 @@
                                                 <i class="fas fa-calendar-alt"></i>
                                             </div>
                                         </div>
-                                        <select class="form-control" name="id" id="id" required>
-                                            @foreach( $pacientes as $paciente)
-                                                <option value=" {{$paciente['pac_id']}}  "
+{{--                                        <select class="form-control" name="id" id="id" required>--}}
+{{--                                            @foreach( $pacientes as $paciente)--}}
+{{--                                                <option value=" {{$paciente['pac_id']}}  "--}}
 
-                                                        @if( $paciente->pac_id == $cita->cit_pac_id ) selected @endif
-                                                >
-                                                    {{ $paciente['pac_nombre'] . " " . $paciente['pac_paterno'] . " " . $paciente['pac_materno']  }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+{{--                                                        @if( $paciente->pac_id == $cita->cit_pac_id ) selected @endif--}}
+{{--                                                >--}}
+{{--                                                    {{ $paciente['pac_nombre'] . " " . $paciente['pac_paterno'] . " " . $paciente['pac_materno']  }}--}}
+{{--                                                </option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
                                     </div>
                                 </div>
                             </div>
