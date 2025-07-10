@@ -42,16 +42,20 @@
 	{{--calendar--}}
 	<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/simple-calendar.css">
+
 	<link rel="stylesheet" href="{{ url('/') }}/css/plugins/demo.css">
+
 
     {{-- estilos propios --}}
 	<link rel="stylesheet" href="{{ url('/') }}/css/estilos.css">
 
+    {{-- Select2 --}}
+    <link rel="stylesheet" href="{{ url('/') }}/css/plugins/select2.css">
 
 
-	<!--=====================================
-	PLUGINS DE JS
-	======================================-->
+    <!--=====================================
+    PLUGINS DE JS
+    ======================================-->
 
 	{{-- Fontawesome --}}
     <script src="https://kit.fontawesome.com/f496ca1534.js" crossorigin="anonymous"></script>
@@ -99,6 +103,10 @@
 	{{-- JS CALENDAR --}}
     <script src="{{ url('/') }}/js/calendario.js"></script>
 	<script src="{{ url('/') }}/js/plugins/jquery.simple-calendar.js"></script>
+
+    {{-- JS Select2 --}}
+    <script src="{{ url('/') }}/js/plugins/select2.js"></script>
+
 
 </head>
 

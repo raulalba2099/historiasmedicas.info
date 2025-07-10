@@ -18,6 +18,28 @@ body {
     /*margin-top: 100px!important;*/
 }
 
+.select2-container--default .select2-selection--single {
+    height: 45px !important;
+    padding: 6px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+/* Centra el texto del valor seleccionado */
+.select2-selection__rendered {
+    line-height: normal !important;
+    padding-left: 0 !important;
+}
+
+/* Ajusta el ícono del dropdown */
+.select2-selection__arrow {
+    height: 100% !important;
+    right: 6px;
+    top: 0;
+}
+
 /*@media only screen and (min-width: 768px) {*/
 /*    body {*/
 /*        !*background-image: url("../imgs/logo-general.jpeg")!important;*!*/

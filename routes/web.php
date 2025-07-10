@@ -46,15 +46,16 @@ Route::view('/citas-crear', 'paginas.citas-crear');
 Route::view('/registrar','paginas.registrar');
 
 Route::get('/pacientes', [PacienteController::class, 'indexAction']);
-Route::get('/pacientes-buscar/{pacienbte}', [PacienteController::class, 'buscaPacientes']);
+Route::get('/pacientes-buscar/{paciente}', [PacienteController::class, 'buscaPacientes']);
+Route::get('/pacientes-buscar', [PacienteController::class, 'buscarPacientesSelect']);
 Route::post('/pacientes', [PacienteController::class, 'saveAction']);
 Route::post('/pacientes/{id}', [PacienteController::class, 'show']);
 Route::put('/pacientes/{id}', [PacienteController::class, 'updateAction']);
 Route::delete('/pacientes/{id}', [PacienteController::class, 'deleteAction']);
 
 Route::get('/citas-crear', [CitasCrearController::class, 'indexAction']);
-Route::put('/citas-crear/{id}', [CitasCrearController::class, 'updateAction']);
-Route::post('/citas-crear', [CitasCrearController::class, 'saveAction']);
+Route::put('/citas-editar/{id}', [CitasCrearController::class, 'updateAction']);
+Route::post('/citas-nueva', [CitasCrearController::class, 'saveAction']);
 Route::delete('/citas-crear/{id}', [CitasCrearController::class, 'deleteAction']);
 Route::get('/citas-crear/{id}', [CitasCrearController::class, 'show']);
 
